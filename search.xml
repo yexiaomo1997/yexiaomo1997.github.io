@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[一台电脑生成多个SSH公钥关联多个GitHub账号]]></title>
+    <url>%2F2019%2F08%2F01%2F%E5%A4%9A%E4%B8%AASSH%E5%85%AC%E9%92%A5%E5%85%B3%E8%81%94%E5%A4%9A%E4%B8%AAGitHub%E8%B4%A6%E5%8F%B7%2F</url>
+    <content type="text"><![CDATA[查看是否存在 SSH key&emsp;&emsp;首先我们先查看我们本地是否存在 SSH key： 1ls -la ~/.ssh 如果存在的有，我们可以另外再生成一个，或者为了好区分，把 .ssh 文件夹删掉，我们从新生成，这里小编就以没有 SSH key 为例： 生成 SSH key&emsp;&emsp;执行如下命令: 12345# 邮箱1 ：your_email_user1@example.comssh-keygen -t rsa -C "your_email_user1@example.com" -f ~/.ssh/id_rsa_user1# 邮箱2 ：your_email_user2@example.comssh-keygen -t rsa -C "your_email_user2@example.com" -f ~/.ssh/id_rsa_user2 &emsp;&emsp;执行了上面的两个命令后，我们会在本地用户目录下 .ssh 目录下发现: your_email_user1@example.com 邮箱对应的私钥文件 id_rsa_user1、公钥文件 id_rsa_user1.pub your_email_user2@example.com 邮箱对应的私钥文件 id_rsa_user2、公钥文件 id_rsa_user2.pub 通过ssh-add添加密钥至ssh-agent中&emsp;&emsp;执行如下命令：-添加本文中的两个密钥： -添加邮箱your_email_user1@example.com 生成的密钥 ：ssh-add ~/.ssh/id_rsa_user1 -添加邮箱your_email_user2@example.com 生成的密钥 ：ssh-add ~/.ssh/id_rsa_user2 注意：如果我们执行命令失败，那我们先执行如下命令： 1ssh-agent bash 然后从新执行加入两个密钥的命令。 添加 SSH 公钥到 GitHub 账号上 &emsp;&emsp;把 .ssh 目录下的其中一个公钥根据生成的邮箱创建的 GitHub 账号进行关联，具体添加小编就不多说了。 在 .ssh 目录下创建并配置 config 文件 -具体内容如下： 1234567891011Host user1 HostName github.com User git preferredAuthentications publickey IdentityFile ~/.ssh/id_rsa_user1 Host user2 HostName github.com User git preferredAuthentications publickey IdentityFile ~/.ssh/id_rsa_user2 测试 -执行如下命令： 12345ssh -T user1Hi user1! You've successfully authenticated, but GitHub does not provide shel l access.ssh -T user2Hi user2! You've successfully authenticated, but GitHub does not provide shel l access. 这时，说明已经OK了！！！这也是大部分的博客介绍到这里，也是没错的，但是我们是要使用 Hexo 关联 GitHub 写博客的，那么这就不够用的，下面就是见证奇迹的时刻！！！ 仓库地址 -对应 user1 的仓库原地址：git@github.com:githubname/repository.git ,但是我们要使用时，是这样的：user1:githubname/repository.git。 -另外的一个同样是这样的。注意：其中的 user1 就是我们在.ssh 目录下创建的 config 文件中的 Host 后面的值&emsp;&emsp;这时我们在博客配置文件中配置如下： 123456# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy: type: git repo: user1:githubname/repository.git branch: master 这时我们这个本地博客关联的就是 user1 的 GitHub 账号。]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Git</tag>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[标签_分类创建]]></title>
+    <url>%2F2019%2F07%2F31%2F%E6%A0%87%E7%AD%BE-%E5%88%86%E7%B1%BB%E5%88%9B%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;我们在前面已经介绍了文章的创建，标签、分类在主题配置的时候提了一下，下面小编就主要写一篇介绍两者的创建。 标签、分类的创建&emsp;&emsp;我们在本地仓库根目录下 Git Bash Here 命令窗口执行如下命令来创建标签： 1hexo new page tags(categories) &emsp;&emsp;其中 tags 表示我们创建的是标签,如果是 categories 则表示我们创建的是分类。其中 page 就是在我们根目录下的： scaffolds 中page 模板 ，如下： 12345---title: &#123;&#123; title &#125;&#125;date: &#123;&#123; date &#125;&#125;type: "tags categories"--- &emsp;&emsp;大家是不是发现我的和你们的模板不一样？我的比大家的多处理一个 type 项的配置，没错，这个就是用来指定我们文章头部中指定的类型，如果你创建的是标签，type 项的值就是 tags ，如果我们创建的是分类，type 项的值就是 categories。]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[新建博客并发表]]></title>
+    <url>%2F2019%2F07%2F31%2F%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E5%8F%91%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[创建新博客文章&emsp;&emsp;我们在本地仓库根目录下 Git Bash Here 命令窗口输入 hexo new &lt;模板&gt; &lt;文章名&gt; 该命令来新建博客文章。 &emsp;&emsp;其中的 &lt;模板&gt; 就是在我们根目录下的： scaffolds 中，系统默认的有三个模板： post 、draft 、page ，如下： 参数 功能 创建后的文章路径 post 新建文章 /source/_posts/ draft 新建文章 /source/_posts/ page 新建文章 /source/_posts/ 说明：&emsp;&emsp;我们通常使用 hexo new post &lt;title&gt; 该命令时，这里的 title 是我们创建文件的文件名以及文章标题，但是我们可以在文章内容中可以修改文章标题。举例：&emsp;&emsp;这里小编新建一篇博客 ：hexo new post test,这时我们会在 source/_posts 文件夹中多出一个 test.md 的文件。打开内容如下： 12345---title: testdate: 2019-07-31 16:39:42tags:--- 说明：&emsp;&emsp;文章内容中两条 --- 中间的内容是该文章的配置内容，后续小编会详细介绍，这里其中 title 是文章的标题，我们可以任意修改，修改后我们发布博客后，我们会在博客中就可以看到我们自己修改的文章标题。文章模板&emsp;&emsp;我们在新建文章的时候使用的 post 、draft 、page 这三个参数，就是我们的模板名称。例如，我们创建博客使用的命令：hexo new post &lt;title&gt; ,这时系统会自动的在 scaffolds 文件夹中查询名为 post 的文件，然后根据其内容作为模板生成新的 .md 文章。文章模板可以自定义，下面是小编的模板： 12345678910111213141516---title: &#123;&#123; title &#125;&#125;date: &#123;&#123; date &#125;&#125;tags: - 标签1 - 标签2categories: 分类1# 底部版权信息copyright: true# 描述description: # 评论系统comments: true# 置顶sticky: --- 博客文章添加分类、标签&emsp;&emsp;通过上面的介绍，我们知道文章的头部的配置信息中 tags 和 categories 分别可以设置文章的标签和分类。其中标签也可以设置多个,例如小编本文的头部配置： 123456789101112---title: Hexo个人博客教程 -- 新建博客并发表copyright: truecomments: truedate: 2019-07-31 16:16:33tags: - Hexo - 教程categories: Hexodescription: Hexo 个人博客搭建全教程之新建博客sticky:--- 在博客文章中添加图片&emsp;&emsp;相信使用过 CSDN 的 MarkerDown 写过博客的朋友知道博客中添加图片那是多么的方便，但是在这里却是有点困难，下面小编就说两种方式： 方式一：&emsp;&emsp;在本地仓库根目录下执行如下命令安装插件： 1npm install hexo-asset-image --save &emsp;&emsp;然后在本地仓库 根目录/source 下新建一个 img 文件夹，将需要插入的图片放到里面，最后我们在文章中使用该格式：![header](img/xxx.jpg) 进行图片引用。 方式二：&emsp;&emsp;在博客配置文件中搜索关键词 post_asset_folder，设置为 true。 1post_asset_folder: true &emsp;&emsp;设置为 true 后，我们以后在创建博客时，系统会自动的在放置博客的所在目录 source/_posts 文件夹下生成一个与文章同名的文件夹。例如我这篇文章创建时则会在当前目录下生成一个名为 新建博客并发表 的文件夹。这时，我们就把本文中需要插入的图片放入到该文件夹中：文章内使用 ![logo](logo.jpg) 插入 logo.jpg 图片，如下插入的图片：]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+</search>
