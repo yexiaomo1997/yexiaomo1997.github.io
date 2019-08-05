@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[个人博客搭建]]></title>
+    <url>%2F2019%2F08%2F05%2F%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[&emsp;&emsp;小编的个人博客站点也是有大佬指点的，在这里小编就在网上总结一些搭建教程，分享给大家。 &emsp;&emsp;这篇博客主要介绍个人博客站点搭建的情况，小编的还有一篇博客介绍的博客备份管理一文，有兴趣的朋友可以两篇文章一起看。 准备工作&emsp;&emsp;现在搭建一个个人独立博客，可选方案很多，小编就以 Hexo 为例来搭建，用 Hexo 搭建需要提前在电脑上安装好 Node 和 Git ，关于 Node 和 Git 的安装，小编在这里不多说，情去下面的官方网站下载即可： Node 下载官方网站&emsp;&emsp;&emsp;&emsp;Git 下载官方网站 安装 Hexo&emsp;&emsp;安装成功后，就可以开始 Hexo 的安装了。步骤如下： 1、安装 Hexo 1npm install -g hexo-cli 2、在本地创建一个本地博客目录 12# blog 这个目录名称可以任意起hexo init blog 上面的命令执行完成后，会在本地创建一个 blog 目录，这里边就是独立博客所必须的一些文件，然后进入到这个目录中，执行如下命令，安装相关的依赖： 12345#进入我们刚刚创建的目录cd blog#安装相关依赖npm install &emsp;&emsp;此时，我们本地 blog 目录下多出来了几个文件夹以及文件，这时我们只需要关注其中两个 _config.yml 、themes 目录。 _config.yml ：主要做网站的一些基本配置，例如网站的 title 、描述、关键字、图标等。 themes ：主要配置我们网站使用的主题，后期详细讲解。 &emsp;&emsp;此时我们就可以执行 hexo s 命令在本地启动我们的项目，启动成功后，浏览器中输入 http://localhost:4000 就可以看到网站了。 说到 hexo s 命令，这里有几个常用命令需要给大家介绍下，分别是： 命令 简写 中文含义 hexo server hexo s 本地启动 hexo generate hexo g 生成静态文件 hexo deploy hexo d 部署网站 hexo clean 清除缓存和已经生成的静态文件 改变主题&emsp;&emsp;我们上面看到的是默认的主题 landscape ，这里小编个人感觉有点不适合小编个人的风格，小编这里就使用了网上最流行的 hexo-theme-next 主题。如果想了解其它主题，可以自行在网上找，很多的。 1、首先，我们要把选好的主题克隆到 ./themes 目录下，其中的 landscape 便是我们项目默认的主题，执行如下命令进行 next 主题克隆： 12345# 切换到 themes 目录下$ cd themes/# 克隆 next 主题$ git clone git@github.com:theme-next/hexo-theme-next.git &emsp;&emsp;克隆完成后，我们就会发现 themes 目录先已经多了一个文件夹，下面我们对 _config.yml 文件，在该文件的最低处，修改内容如下： 12345# Extensions## Plugins: https://hexo.io/plugins/## Themes: https://hexo.io/themes/## 注意：这里配置的名字要和 themes 目录下的主题文件夹名一致theme: hexo-theme-next 这时，我们就可以根据官方文档进行主题配置，下面我们先启动项目，查看一下新的主题效果： 123hexo cleanhexo ghexo s &emsp;&emsp;本文小编早就写过了，一直没发布到这个个人博客站点上，这时候才发出来，小编前面也说了，可以和小编之前的一篇文章一起看，根据个人需求来搭建，本文就到此结束！！！]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[个人叙述]]></title>
+    <url>%2F2019%2F08%2F05%2F%E4%B8%AA%E4%BA%BA%E5%8F%99%E8%BF%B0%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>about</category>
+      </categories>
+      <tags>
+        <tag>about</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo+GitHub 博客备份管理]]></title>
     <url>%2F2019%2F08%2F03%2F%E5%8D%9A%E5%AE%A2%E5%A4%87%E4%BB%BD%E7%AE%A1%E7%90%86%2F</url>
     <content type="text"><![CDATA[前言&emsp;&emsp;本文主要的意义在于我们后期能更好的维护我们个人使用 Hexo + GitHub 搭建的个人博客站点资源的。存在的隐患小编在本文介绍中提到一点：我们的本地仓库主要存放 Hexo 以及 themes主题的配置信息，我们会发现我们如果不考虑后期维护的问题，我们会在GitHub远程仓库中并看不到我们的这些配置信息，所以这里小编将介绍在我们本地文件丢失后，又不影响我们后期的博客的更新以及维护。 &emsp;&emsp;这里小编只讲新搭建的博客环境的情况，至于已经搭建好的博客的并且有个人博客发表在站点的如何处理，后期小编会出教程，或者给小编发邮箱 loye_you@163.com. 搭建前提&emsp;&emsp;安装 Hexo 运行环境： 安装 node.js 官方下载,然后双击安装，默认一直next即可。 安装成功后，在cmd命令窗口 node -v 以及 npm -v 查看是否安装成功。 安装 Git 官方下载,然后同样双击安装，默认一直next即可。 安装成功后，在cmd命令窗口 git –version 验证是否安装成功。 在GitHub上创建一个远程仓库&emsp;&emsp;首先必须有一个GitHub账号，这个小编就不多说了。然后我们登录GitHub账号，在自己的账号上创建一个repository，命名为 GitHubUserName.github.io 注意：GitHubUserName 是你的GitHub账号名，例如：一个GitHub账号名是：zhangsan，则就必须创建仓库名为： zhangsan.github.io git本地配置&emsp;&emsp;关于git配置，这里小编就不做介绍了，在小编的 CSDN 博客有 Git一系列的文章，大家可以去参考，小编的 CSDN 在本文左下角的图标点击可以显示左侧栏中有小编的友情链接中。 源文件存放以及 Hexo 安装&emsp;&emsp;这里我们需要在仓库中新建一个 hexo 分支用来存放我们的源文件，这里我们会有两个分支：master 和 hexo ，以后我们的所有操作都将在hexo分支进行，具体详情请继续看。 关联远程仓库&emsp;&emsp;这时，我们新建的远程仓库还是一个空仓库，这时我们可以在远程仓库创建一个文件，把这个仓库 clone 到本地，我们也可以在本地创建一个本地仓库关联到远程仓库，具体详情大家也可以看小编的 CSDN git一系列博客。 创建hexo分支&emsp;&emsp;本地关联GitHub成功后，我们在本地创建hexo分支并且切换到hexo分支上,执行如下命令： 1git checkout -b hexo Hexo安装&emsp;&emsp;我们在hexo分支下，执行如下命令，进行hexo安装： 1npm install -g hexo-cli 注意，由于Hexo要求必须在空文件夹中执行init操作，所以我们需要在博客文件夹以外的地方新建一个空文件夹，之后点击鼠标右键选择 Git bash Here 输入以下命令，并将命令执行完成后文件夹中的所有文件复制到我们本地仓库文件夹中。1hexo init &emsp;&emsp;然后我们回到我们本地仓库进入 Git Bash Here 中，执行如下命令安装相关依赖： 1npm install &emsp;&emsp;这时，我们本地博客已经搭建成功，我们可以执行如下命令，访问博客站点： 123hexo generate (可以简写：hexo g)hexo server (可以简写：hexo s) 启动成功后，我们可以在浏览器访问 ：http://localhost:4000 查看。 博客本地资源推送到远程仓库以及部署&emsp;&emsp;本地仓库站点搭建成功了，下面我们就该把该内容推送到远程仓库了。 编辑博客配置文件 _config.yml&emsp;&emsp;该文件在本地仓库根目录下的： _config.yml文件，在该文件的最低处，找到 deploy 关键字，配置如下，然后保存即可： 1234deploy: type: git repo: # 这里配置你的远程仓库克隆地址 branch: master 推送本地资源到远程仓库hexo分支上：&emsp;&emsp;首先安装一个插件： 1npm install hexo-deployer-git --save &emsp;&emsp;在本地仓库首先切换到 hexo分支上，执行如下命令： 123456789git add .git commit -m "提交信息"git push -u origin hexohexo ghexo d 这时我们可以通过 http://GitHubUserName.github.io 访问我们的博客站点了，如果访问没有东西，可能是延迟的问题，多刷新几遍或者等几分钟在访问。 博客新建与管理&emsp;&emsp;我们这时候可以尽情的享受个人博客站点搭建成功的喜悦，尽情的写作吧！我们至于要在本地仓库的hexo分支做任何操作新建文章、标签、分类等，然后我们推送到远程仓库，然后生成的静态页面会在远程仓库master中，非常方便。 博客新建文件或更新： 123git add .git commit -m "提交信息"git push 生成静态文件并且部署到GitHub中master分支上 12hexo ghexo d 多台电脑管理站点或者本地资源丢失 &emsp;&emsp;当本地资料丢失或者需要进行再多台电脑上更新博客时，只需要按照下列步骤操作： 我们只需要把hexo分支上的内容clone下来： 1git clone ssh协议地址或者http协议地址 然后，在本地新clone的文件夹下通过Git bash依次执行下列指令： 123npm install -g hexo-clinpm installnpm install hexo-deployer-git --save 有关主题问题&emsp;&emsp;关于主题问题，小编算是摔坑里不少，这里小编就说说，这里的问题，我们会发现我们配置的主题并不能推送到我们的远程仓库，那是因为我们的主题是克隆下来的，也算是一个仓库了，我们还是对主题做另外的备份吧，不要想着关联自己的远程仓库，因为我们后期还是需要使用名令 git pull 更新主题呢，所以这个还是老老实实的自己想办法备份吧！我们会在另外一台电脑克隆下来的资源里没有主题，访问站点一片空白，那是因为没有主题，我们需要把我们备份好的主题复制到根目录下的 themes中，然后进入主题目录下进入 Git Bash Here 中，执行 git pull ，然后部署到自己远程仓库上即可。]]></content>
@@ -8,8 +31,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>教程</tag>
         <tag>Hexo</tag>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
@@ -33,8 +56,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>教程</tag>
         <tag>Hexo</tag>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
@@ -45,8 +68,8 @@
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>教程</tag>
         <tag>Hexo</tag>
+        <tag>教程</tag>
       </tags>
   </entry>
 </search>
